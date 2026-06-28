@@ -44,11 +44,6 @@ public class TodoRepository
         return _todoItems.FirstOrDefault(t => t.Id == id);
     }
 
-    public IReadOnlyList<TodoItem> GetByCategory(int categoryId)
-    {
-        return _todoItems.Where(t => t.CategoryId == categoryId).ToList();
-    }
-
     public IReadOnlyList<TodoItem> GetByStatus(Status status)
     {
         return _todoItems.Where(t => t.Status == status).ToList();
@@ -67,5 +62,17 @@ public class TodoRepository
     public IReadOnlyList<TodoItem> GetSortedByDueDate()
     {
         return _todoItems.OrderBy(t => t.DueDate).ToList();
+    }
+    
+    public int GetNextId()
+    {
+        int returnId = _nextId;
+        _nextId++;
+        return returnId;
+    }
+
+    public void SetNextId(int id)
+    {
+        _nextId = id;
     }
 }

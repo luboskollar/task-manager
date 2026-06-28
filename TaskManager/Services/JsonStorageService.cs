@@ -7,7 +7,7 @@ public class JsonStorageService
 {
     private const string FileName = "todos.json";
     
-    public void Save(List<TodoItem> todoItems)
+    public void Save(IReadOnlyList<TodoItem> todoItems)
     {
         var options = new JsonSerializerOptions { WriteIndented = true };
         File.WriteAllText(FileName, JsonSerializer.Serialize(todoItems, options));
